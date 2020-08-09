@@ -1,7 +1,6 @@
 **并查集模板**
 
 ```
-class Solution {
 class UF
 {
     private:
