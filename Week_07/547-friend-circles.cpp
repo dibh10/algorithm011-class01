@@ -1,17 +1,15 @@
-**å¹¶æŸ¥é›†æ¨¡æ¿**
 
-```
 class Solution {
 class UF
 {
     private:
-    //è¿é€šåˆ†é‡ä¸ªæ•°
+    //Á¬Í¨·ÖÁ¿¸öÊı
     int count;
 
-    //å­˜å‚¨ä¸€æ£µæ ‘
+    //´æ´¢Ò»¿ÃÊ÷
     vector<int> parent;
 
-    //é‡é‡
+    //ÖØÁ¿
     vector<int> size;
 
     public:
@@ -35,7 +33,7 @@ class UF
 
         if (rootp == rootq) return;
 
-        //å°æ ‘æ¥åˆ°å¤§æ ‘ä¸‹é¢ï¼Œè¾ƒå¹³è¡¡
+        //Ğ¡Ê÷½Óµ½´óÊ÷ÏÂÃæ£¬½ÏÆ½ºâ
         if (size[rootp] < size[rootq])
         {
             parent[rootp] = rootq;
@@ -67,7 +65,7 @@ class UF
     {
         while (parent[x] != x)
         {
-            //è·¯å¾„å‹ç¼©
+            //Â·¾¶Ñ¹Ëõ
             parent[x] = parent[parent[x]];
             x = parent[x];
         }
@@ -75,4 +73,23 @@ class UF
         return x;
     }
 };
-```
+public:
+    int findCircleNum(vector<vector<int>>& M) {
+        int size = M.size();
+
+        UF un(size);
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = i+1; j < size; j++)
+            {
+                if (M[i][j] == 1)
+                {
+                    un.merge(i, j);
+                }
+            }
+        }
+
+        return un.counts();
+    }
+};
+
